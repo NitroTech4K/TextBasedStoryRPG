@@ -9,7 +9,7 @@ namespace TextBasedStoryRPG
     internal class Program
     {
         static string[] Pages = //Page is in brackets below
-            {
+            {                          //1 means go to page 1, 2 means go to page 2
             "The dog is cute today and all days; pet dog; kick dog; 1; 2", //page 0
             " you pet the dog but find The Cat, its Better then Dog; pet cat; kick cat; 3; 4", //page 1
             "You kicked the dog, it whimpers and runs away. You're alone.",  //page 2
@@ -68,12 +68,12 @@ namespace TextBasedStoryRPG
             {
                 if (input.Key == ConsoleKey.D1)  //If the player presses the 1 key on the keyboard
                 {
-                    choices =  int.Parse(pagesElements[3]); //choice will go to the page for the first option.
+                    choices =  int.Parse(pagesElements[pagesElements.Length - 2]); //choice will go to the page for the first option.
                 }
 
                 if (input.Key == ConsoleKey.D2)  //If the player presses the 2 key on the keyboard
                 {
-                    choices = int.Parse(pagesElements[4]);  //choice will go to the page for the second option.
+                    choices = int.Parse(pagesElements[pagesElements.Length - 1]);  //choice will go to the page for the second option.
                 }
             }
         }
