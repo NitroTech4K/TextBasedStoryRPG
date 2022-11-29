@@ -10,13 +10,17 @@ namespace TextBasedStoryRPG
     {
         static string[] Pages = //Page is in brackets below
             {
-            "The dog is cute today and all days; pet dog; kick dog;2;3; you pet the dog but find The Cat, its Better then Dog; pet cat; don't kick cat you monster;4;5",
-            "He's happy.; Give treat; Walk away;"
+            "The dog is cute today and all days; pet dog; kick dog; 2; 3;", //page 0
+            " you pet the dog but find The Cat, its Better then Dog; pet cat; don't kick cat you monster;4;5", //page 1
+            "He's happy.; Give treat; Walk away;"  //page 2
             };
         
        
         static int choices = 0; //The choice of the page (To be changed to 1 so a title screen can be added.)
-        
+
+        static string[] pagesElements;
+
+
         static void Main(string[] args) //Main Program
         {
             while (true) //Loop to repeat the following actions infinately
@@ -31,8 +35,7 @@ namespace TextBasedStoryRPG
 
         static void SplitStory() //Splits the story string up, separated by ;. Also a display methoud of options.
         {
-
-            string[] pagesElements = Pages[choices].Split(';');
+            pagesElements = Pages[choices].Split(';');
 
             Console.WriteLine(pagesElements[0]); //First part of the story string of text
             Console.WriteLine("");
@@ -48,7 +51,12 @@ namespace TextBasedStoryRPG
 
             if (input.Key == ConsoleKey.D1)  //If the player presses the 1 key on the keyboard
             {
-                choices = 1;    //choice will go to page 1. (Needs work, hard coded.)
+                choices =  int.Parse(pagesElements[3]); //choice will go to the page for the first option.
+            }
+
+            if (input.Key == ConsoleKey.D2)  //If the player presses the 2 key on the keyboard
+            {
+                choices = int.Parse(pagesElements[4]);  //choice will go to the page for the second option.
             }
         }
     }
