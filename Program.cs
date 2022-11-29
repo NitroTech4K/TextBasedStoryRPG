@@ -41,8 +41,10 @@ namespace TextBasedStoryRPG
         static void SplitStory() //Splits the story string up, separated by ;. Also a display methoud of options.
         {
             pagesElements = Pages[choices].Split(';');
-
-            Console.WriteLine(pagesElements[0]); //First part of the story string of text
+            for (int i = 0; i < pagesElements.Length - 4; i = i + 1) // continue to count until max amount of splits, minus 4, to not show the choices and next pages.
+            {
+                Console.WriteLine(pagesElements[i]); //First part of the story string of text
+            } 
 
 
             if (pagesElements.Length > 1)
@@ -50,8 +52,8 @@ namespace TextBasedStoryRPG
                 Console.WriteLine("");
                 Console.WriteLine("");
                 Console.WriteLine("");
-                Console.WriteLine(pagesElements[1]); //Option 1
-                Console.WriteLine(pagesElements[2]); //Option 2
+                Console.WriteLine(pagesElements[pagesElements.Length - 4]); //Option 1
+                Console.WriteLine(pagesElements[pagesElements.Length - 3]); //Option 2
             }
             else 
             {
