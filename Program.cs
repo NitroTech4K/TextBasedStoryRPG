@@ -13,8 +13,8 @@ namespace TextBasedStoryRPG
             "The dog is cute today and all days; pet dog; kick dog; 1; 2", //page 0
             "you pet the dog but find The Cat, its Better then Dog; pet cat; kick cat; 3; 4", //page 1
             "You kicked the dog, it whimpers and runs away. You're alone.;end",  //page 2
-            "You pet the cat, the dog whimpers and runs away. You abandoned him.",//Page 3
-            "You kick the cat. It hisses and runs off. You're with the dog now.", //Page 4
+            "You pet the cat, the dog whimpers and runs away. You abandoned him.;end",//Page 3
+            "You kick the cat. It hisses and runs off. You're with the dog now.;end", //Page 4
             };
         
        
@@ -26,6 +26,11 @@ namespace TextBasedStoryRPG
 
         static void Main(string[] args) //Main Program
         {
+            Console.WriteLine("Quest Of Elsyum");
+
+            Console.ReadKey(true);
+            Console.Clear();
+
             play = true;
 
             while (play == true) //Loop to repeat the following actions infinately
@@ -42,15 +47,20 @@ namespace TextBasedStoryRPG
         {
             pagesElements = Pages[choices].Split(';');
 
-
-            if (pagesElements) //If there's no splits
+            if (pagesElements[pagesElements.Length - 1].Contains("end")) //If there's no splits
             {
-                Console.WriteLine("r");
+                    
+                play = false;
+                                              //i++ = (i = i + 1)
+                for (int i = 0; i < pagesElements.Length - 1; i++)  //Print out the ending page for that branch of text. 
+                {
+                    Console.WriteLine(pagesElements[i]);
+                }
             }
-
+            
             else
             {
-                for (int i = 0; i < pagesElements.Length - 4; i = i + 1) // continue to count until max amount of splits, minus 4, to not show the choices and next pages.
+                for (int i = 0; i < pagesElements.Length - 4; i++) // continue to count until max amount of splits, minus 4, to not show the choices and next pages.
                 {
                     Console.WriteLine(pagesElements[i]); //First part of the story string of text
                 } 
@@ -64,10 +74,6 @@ namespace TextBasedStoryRPG
                     Console.WriteLine(pagesElements[pagesElements.Length - 4]); //Option 1
                     Console.WriteLine(pagesElements[pagesElements.Length - 3]); //Option 2
                 }
-                else 
-                {
-                    play = false;
-                }
 
             }
 
@@ -79,7 +85,15 @@ namespace TextBasedStoryRPG
         static void inputManager() //manages the input from the user, only for the options provided.
         {
             ConsoleKeyInfo input = Console.ReadKey(true);
-            if (pagesElements.Length > 1)
+            if (pagesElements[pagesElements.Length - 1].Contains("end"))
+            {
+
+
+
+                
+            }
+
+            else
             {
                 if (input.Key == ConsoleKey.D1)  //If the player presses the 1 key on the keyboard
                 {
@@ -90,7 +104,8 @@ namespace TextBasedStoryRPG
                 {
                     choices = int.Parse(pagesElements[pagesElements.Length - 1]);  //choice will go to the page for the second option.
                 }
+
             }
-        }
+        }   
     }
 }
