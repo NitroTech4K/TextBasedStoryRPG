@@ -32,9 +32,20 @@ namespace TextBasedStoryRPG
 
         static void Main(string[] args) //Main Program
         {
-            Console.WriteLine("Quest Of Elsyum");
+            Console.WriteLine("╔══════════════════════════════════════╗");
+            Console.WriteLine("║              CAVE BORN               ║");
+            Console.WriteLine("║          -----------------           ║");
+            Console.WriteLine("║       Press any button to start      ║");
+            Console.WriteLine("║          -----------------           ║");
+            Console.WriteLine("║                                      ║");
+            Console.WriteLine("║                                      ║");
+            Console.WriteLine("║     Use the 1 and 2 keys to play.    ║");
+            Console.WriteLine("╚══════════════════════════════════════╝");
 
             Console.ReadKey(true);
+
+            Console.Beep(600, 100);
+
             Console.Clear();
 
             play = true;
@@ -91,6 +102,12 @@ namespace TextBasedStoryRPG
         static void inputManager() //manages the input from the user, only for the options provided.
         {
             ConsoleKeyInfo input = Console.ReadKey(true);
+
+            if (input.Key== ConsoleKey.D1|| input.Key == ConsoleKey.D2)
+            {
+                Console.Beep(200, 100);
+            }
+
             if (pagesElements[pagesElements.Length - 1].Contains("end"))
             {
 
@@ -104,11 +121,13 @@ namespace TextBasedStoryRPG
                 if (input.Key == ConsoleKey.D1)  //If the player presses the 1 key on the keyboard
                 {
                     choices =  int.Parse(pagesElements[pagesElements.Length - 2]); //choice will go to the page for the first option.
+                    
                 }
 
                 if (input.Key == ConsoleKey.D2)  //If the player presses the 2 key on the keyboard
                 {
                     choices = int.Parse(pagesElements[pagesElements.Length - 1]);  //choice will go to the page for the second option.
+                    
                 }
 
             }
